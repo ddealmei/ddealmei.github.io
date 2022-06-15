@@ -1,72 +1,90 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
-
-@book{einstein1956investigations,
-  bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation,}
+@inproceedings{IEEE:conf/sp/JancarFBSSBFA21,
+  author    = {Jancar, J. and 
+               Fourné, M. and 
+               De Almeida Braga, D. and 
+               Sabt, M. and 
+               Schwabe, P. and
+               Barthe, G. and 
+               Fouque, P. and 
+               Acar, Y.},
+  booktitle = {IEEE Symposium on Security and Privacy (SP)},
+  title     = {“They're not that hard to mitigate”: What Cryptographic Library Developers Think About Timing Attacks},
+  year      = {2022},
+  volume    = {},
+  issn      = {2375-1207},
+  pages     = {755-772},
+  keywords  = {constant-time;timing-attacks;cryptographic-library;survey;developer-survey;expert-survey;usable-security;human-factors;cryptography},
+  doi       = {10.1109/SP46214.2022.00044},
+  url       = {https://doi.ieeecomputersociety.org/10.1109/SP46214.2022.00044},
+  publisher = {IEEE Computer Society},
+  address   = {Los Alamitos, CA, USA},
+  month     = {may},
+  pdf       = {2022-sp-usec.pdf},
+  abstract  = {Timing attacks are among the most devastating side-channel attacks, allowing remote attackers to retrieve secret material, including cryptographic keys, with relative ease. In principle, “these attacks are not that hard to mitigate”: the basic intuition, captured by the constant-time criterion, is that control- flow and memory accesses should be independent from secrets. Furthermore, there is a broad range of tools for automatically checking adherence to this intuition. Yet, these attacks still plague popular cryptographic libraries twenty-five years after their discovery, reflecting a dangerous gap between academic research and cryptographic engineering. This gap can potentially undermine the emerging shift towards high-assurance, formally verified cryptographic libraries. However, the causes for this gap remain uninvestigated.
+               
+               To understand the causes of this gap, we conducted a survey with 44 developers of 27 prominent open-source cryptographic libraries. The goal of the survey was to analyze if and how the developers ensure that their code executes in constant time. Our main findings are that developers are aware of timing attacks and of their potentially dramatic consequences and yet often prioritize other issues over the perceived huge investment of time and resources currently needed to make their code resistant to timing attacks. Based on the survey, we identify several shortcomings in existing analysis tools for constant-time, and issue recommendations that can make writing constant- time libraries less difficult. Our recommendations can inform future development of analysis tools, security-aware compilers, and cryptographic libraries, not only for constant-timeness, but in the broader context of side-channel attacks, in particular for micro-architectural side-channel attacks, which are a younger topic and too recent as focus for this survey.},
+  bibtex_show = {true}, 
+  code      = {https://crocs.fi.muni.cz/_media/public/papers/2021_usablect_codebook.pdf},
+  rank      = {A*},
+  selected  = {true}
 }
 
-@article{einstein1950meaning,
-  abbr={AJP},
-  bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics,},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers,}
+@inproceedings{DBLP:conf/ccs/BragaFS21,
+  author    = {De Almeida Braga, Daniel and
+               Fouque, Pierre{-}Alain and
+               Sabt, Mohamed},
+  title     = {{PARASITE:} PAssword Recovery Attack against Srp Implementations in
+               ThE wild},
+  booktitle = {{CCS}},
+  pages     = {2497--2512},
+  publisher = {{ACM}},
+  year      = {2021},
+  pdf       = {2021_ccs_parasite.pdf},
+  abstract  = {Protocols for password-based authenticated key exchange (PAKE) allow two users sharing only a short, low-entropy password to establish a secure session with a cryptographically strong key. The challenge in designing such protocols is that they must resist offline dictionary attacks in which an attacker exhaustively enumerates the dictionary of likely passwords in an attempt to match the used password. In this paper, we study the resilience of one particu- lar PAKE against these attacks. Indeed, we focus on the Secure Remote Password (SRP) protocol that was designed by T. Wu in 1998. Despite its lack of formal security proof, SRP has become a de-facto standard. For more than 20 years, many projects have turned towards SRP for their authentication solution, thanks to the availability of open-source implementations with no restrictive licenses. Of particular interest, we mention the Stanford reference implementation (in C and Java) and the OpenSSL one (in C).
+In this paper, we analyze the security of the SRP implementation inside the OpenSSL library. In particular, we identify that this implementation is vulnerable to offline dictionary attacks. Indeed, we exploit a call for a function computing modular exponentiation of big numbers in OpenSSL. In the SRP protocol, this function leads to the call of a non-constant time function, thereby leaking some information about the used password when leveraging cache-based Flush+Reload timing attack. Then, we show that our attack is practical, since it only requires one single trace, despite the noise of cache measurements. In addition, the attack is quite efficient as the reduction of some common dictionaries is very fast using modern resources at negligible cost. We also prove that the scope of our vulnerability is not only limited to OpenSSL, since many other projects, including Stanford’s, ProtonMail and Apple Homekit, rely on OpenSSL, which makes them vulnerable. We find that our flaw might also impact projects written in Python, Erlang, JavaScript and Ruby, as long as they load the OpenSSL dynamic library for their big number operations. We disclosed our attack to OpenSSL who acknowledged the attack and timely fixed the vulnerability.},
+  bibtex_show = {true}, 
+  slides    = {2021_ccs_parasite_full.pdf},
+  code      = {https://gitlab.inria.fr/ddealmei/poc-openssl-srp},
+  rank      = {A*},
+  selected  = {true}
 }
 
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein, A. and Podolsky, B. and Rosen, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.,},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  selected={true}
+@inproceedings{DBLP:conf/acsac/BragaFS20,
+  author    = {De Almeida Braga, Daniel and
+               Fouque, Pierre{-}Alain and
+               Sabt, Mohamed},
+  title     = {Dragonblood is Still Leaking: Practical Cache-based Side-Channel in the Wild},
+  booktitle = {{ACSAC}},
+  pages     = {291--303},
+  publisher = {{ACM}},
+  year      = {2020},
+  pdf       = {2020_acsac_dragonblood_is_still_leaking.pdf},
+  abstract  = {Recently, the Dragonblood attacks have attracted new interests on the security of WPA-3 implementation and in particular on the Dragonfly code deployed on many open-source libraries. One attack concerns the protection of users passwords during authentication. In the Password Authentication Key Exchange (PAKE) protocol called Dragonfly, the secret, namely the password, is mapped to an elliptic curve point. This operation is sensitive, as it involves the secret password, and therefore its resistance against side-channel attacks is of utmost importance. Following the initial disclosure of Dragonblood, we notice that this particular attack has been partially patched by only a few implementations.
+               In this work, we show that the patches implemented after the disclosure of Dragonblood are insufficient. We took advantage of state-of-the-art techniques to extend the original attack, demon- strating that we are able to recover the password with only a third of the measurements needed in Dragonblood attack. We mainly apply our attack on two open-source projects: iwd (iNet Wireless Daemon) and FreeRADIUS, in order underline the practicability of our attack. Indeed, the iwd package, written by Intel, is already de- ployed in the Arch Linux distribution, which is well-known among security experts, and aims to offer an alternative to wpa_supplicant. As for FreeRADIUS, it is widely deployed and well-maintained up- stream open-source project. We publish a full Proof of Concept of our attack, and actively participated in the process of patching the vulnerable code. Here, in a backward compatibility perspective, we advise the use of a branch-free implementation as a mitigation technique, as what was used in hostapd, due to its quite simplicity and its negligible incurred overhead.},
+  bibtex_show = {true}, 
+  slides    = {2020_dragonblood2_acsac_slides.pdf},
+  code      = {https://gitlab.inria.fr/ddealmei/poc-iwd-acsac2020},
+  rank      = {A},
+  selected  = {true}
 }
 
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik,},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.,},
-  volume={17},
-  pages={549--560},
-  year={1905}
-}
-
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
+@article{DBLP:journals/tches/BragaFS20,
+  author   = {De Almeida Braga, Daniel and
+              Fouque, Pierre{-}Alain and
+              Sabt, Mohamed},
+  title    = {The Long and Winding Path to Secure Implementation of GlobalPlatform {SCP10}},
+  journal  = {{IACR} Trans. Cryptogr. Hardw. Embed. Syst.},
+  volume   = {2020},
+  number   = {3},
+  pages    = {196--218},
+  year     = {2020},
+  pdf      = {2020_tches_scp10.pdf},
+  abstract = {GlobalPlatform (GP) card specifications are defined for smart cards regarding rigorous security requirements. The increasingly more powerful cards within an open ecosystem of multiple players stipulate that asymmetric-key protocols become necessary. In this paper, we analyze SCP10, which is the Secure Channel Protocol (SCP) that relies on RSA for key exchange and authentication. Our findings are twofold. First, we demonstrate several flaws in the design of SCP10. We discuss the scope of the identified flaws by presenting several attack scenarios in which a malicious attacker can recover all the messages protected by SCP10. We provide a full implementation of these attacks. For instance, an attacker can get the freshly generated session keys in less than three hours. Second, we propose a secure implementation of SCP10 and discuss how it can mitigate the discovered flaws. Finally, we measure the overhead incurred by the implemented countermeasures.},
+  bibtex_show = {true},
+  slides    = {2020_scp10_tches_long.pdf},
+  code     = {https://github.com/ddealmei/SCP10-attack},
+  rank     = {A}
 }
