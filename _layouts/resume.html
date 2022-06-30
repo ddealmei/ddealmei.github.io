@@ -1,0 +1,58 @@
+---
+layout: default
+---
+<!-- page.html -->
+<div class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <p class="post-description">{{ page.description }}</p>
+    </header>
+    <article>
+        {% assign education = site.resume  | where_exp:"item", "item.categories contains 'education'"  
+                | sort: 'date' | reverse -%}
+        {% assign teaching = site.resume   | where_exp:"item", "item.categories contains 'teaching'"   
+                | sort: 'enddate' | reverse -%}
+        {% assign experience = site.resume | where_exp:"item", "item.categories contains 'experience'" 
+                | sort: 'date' | reverse -%}
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="mb-4">Experience</h3>
+                <ul class="list-inline resume-list">
+                    {% for exp in experience %}
+                    <li>
+                        <h4 class="title">{{ exp.title }}</h4>
+                        <span class="place">{{ exp.place }}</span> <br>
+                        <span class="time">{{ exp.date | date: '%m/%Y' }} - {% if exp.enddate %} {{ exp.enddate | date: '%m/%Y' }}{%
+                            endif %}</span>
+                        <p>{{ exp.content }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <h3 class="mb-4">Education</h3>
+                <ul class="list-inline resume-list">
+                {% for educ in education %}
+                    <li>
+                        <h4 class="title">{{ educ.title }}</h4>
+                        <span class="place">{{ educ.place }}</span> <br>
+                        <span class="time">{{ educ.date | date: '%Y' }} - {% if educ.enddate %} {{ educ.enddate | date: '%Y' }}{% endif %}</span>
+                        <p>{{ educ.content }}</p>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="mb-4">Teaching</h3>
+                <ul class="list-inline resume-list">
+                    {% for teach in teaching %}
+                    <li>
+                        <h4 class="title">{{ teach.title }}</h4>
+                        <span class="place">{{ teach.place }}</span> <br>
+                        <span class="time">{{ teach.date | date: '%Y' }} - {{ teach.enddate | date: '%Y' }}</span>
+                        <p>{{ teach.content }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            </div>
+        </div>
+    </article>

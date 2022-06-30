@@ -582,3 +582,158 @@ html.transition *:after {
     }
   }
 }
+
+.item {
+  padding-top: 100px;
+  min-height: 150px;
+  position: relative
+}
+
+.item:before,
+.last-item:after {
+  background: #fff;
+  border: 8px solid #000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  content: "";
+  margin-left: 1rem;
+  position: relative;
+  z-index: 1;
+  left: calc(2% - 36px)
+}
+
+.vertical-line {
+  width: 8px;
+  background-color: #000;
+  position: absolute;
+  left: calc(2% - 5px);
+  top: 0;
+  bottom: 0
+}
+
+.item .card-panel {
+  margin: 0;
+  margin: 2rem 0 0 3rem
+}
+
+.item-date {
+  margin-top: -60px;
+  margin-left: 4rem
+}
+
+.cv-title {
+  margin-bottom: 0;
+  margin-left: calc(2% - 5px);
+  line-height: 190%
+}
+
+.cv-title span {
+  padding: 1rem
+}
+
+.last-item {
+  padding-top: 80px;
+  height: 70px;
+  position: relative
+}
+
+// RESUME / TIMELINE
+// /*========================
+//     8. RESUME SECTION
+// ========================*/
+.resume-title {
+  font-weight: 500;
+  color: #333333;
+}
+
+.resume-list{
+  li {
+    position: relative;
+    padding: 0 15px 50px 40px;
+  }
+
+  li:before {
+    border: 2px solid #a2a2a2;
+    content: "";
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    position: absolute;
+    left: 3px;
+    top: 4px;
+  }
+
+  li:after {
+    content: "";
+    position: absolute;
+    background-color: #a2a2a2;
+    width: 2px;
+    height: calc(100% - 43px);
+    border-radius: 3px;
+    top: 33px;
+    left: 10px;
+  }
+
+  li:last-child:after {
+    content: none;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-family: inherit;
+    margin-bottom: 1rem;
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  h2.year {
+    color: var(--global-divider-color);
+    border-top: 1px solid var(--global-divider-color);
+    padding-top: 1rem;
+    margin-top: 2rem;
+    margin-bottom: -2rem;
+    text-align: right;
+  }
+
+  h3 {
+    font-weight: 500;
+  }
+
+  h4 {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: inherit;
+  }
+
+  span.time {
+    color: #333333;
+    font-weight: 300;
+    font-size: 0.875em;
+    color: var(--global-text-color);
+  }
+
+  span.place {
+    font-size: 0.875em;
+    color: var(--global-text-color);
+    font-style: italic;
+  }
+
+  span.title {
+    font-weight: bolder;
+    color: var(--global-text-color);
+  }
+}
+
+section.resume h3 {
+  font-size: 1.5em;
+}
+
+.col-lg-6 {
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%
+}

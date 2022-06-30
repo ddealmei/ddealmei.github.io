@@ -2,23 +2,22 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: PhD Student at University of Rennes 1, CNRS, IRISA
 
 profile:
   align: right
   image: prof_pic.jpg
   address: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Bat. 12, Office F407</p>
+    <p>IRISA, Rennes (France)</p>
 
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I started my PhD in October 2019, under the supervision of [Pierre-Alain FOUQUE](https://www.di.ens.fr/~fouque/) and [Mohamed SABT](http://people.irisa.fr/Mohamed.Sabt/) in the [SPICY](https://spicy.irisa.fr/) team (former EMSEC) at IRISA in Rennes.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+My research focuses on vulnerabilities in cryptographic implementations, which can be related to the core protocol (if there is an issue in the specification) or implementation specific (side channel, or any information leak). The goal of my PhD is to outline the practicability of such vulnerabilities by implementing attacks in a real world scenario.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Before starting my PhD, I graduated from [Rennes 1's Cryptography Master](https://formations.univ-rennes1.fr/master-mention-mathematiques-et-applications-parcours-mathematiques-de-linformation-cryptographie) in 2018, where I acquired the mathematical background needed to understand the underlying mechanisms of cryptography. Then, I worked one year at [Amossys](https://www.amossys.fr/) (Rennes) as a Security Analyst (mostly crypto related software), which allowed me to get my hands on some real world crypto implementations and pushed me to enlarge my CS knowledge and develop more practical skills.

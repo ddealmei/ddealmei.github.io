@@ -1,18 +1,27 @@
-"Adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+# "Fouque":
+#   - firstname: ["Pierre-Alain", "PA.", "P.A.", "P."]
+#     url: https://scholar.google.com/citations?user=wW2eXngAAAAJ&hl=fr
 
-"Podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+# "Sabt":
+#   - firstname: ["Mohamed", "M."]
+#     url: https://people.irisa.fr/Mohamed.Sabt/
 
-"Rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+# "Acar":
+#   - firstname: ["Yasemin", "Y."]
+#     url: https://yaseminacar.de/
 
-"Bach": 
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+# "Jancar": 
+#   - firstname: ["Ján", "J.", "Jan"]
+#     url: https://neuromancer.sk/about
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+# "Fourné":
+#   - firstname: ["Marcel", "M."]
+#     url: https://marcelfourne.de/
+
+# "Schwabe":
+#   - firstname: ["Peter", "P."]
+#     url: https://cryptojedi.org/peter/index.shtml
+
+# "Barthe":
+#   - firstname: ["Gilles", "G."]
+#     url: https://gbarthe.github.io/
