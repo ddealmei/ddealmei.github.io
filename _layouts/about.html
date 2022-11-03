@@ -45,6 +45,10 @@ layout: canvas
             <!-- Selected papers -->
             {%- include selected_papers.html %}
           {%- endif %}
+          {% if page.invitations -%}
+            <!-- Selected papers -->
+            {%- include invitations.html %}
+          {%- endif %}
           {%- if page.social %}
           <!-- Social -->
           <div class="social">
