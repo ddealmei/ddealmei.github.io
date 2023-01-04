@@ -185,10 +185,7 @@ defaults:
       path: "assets/**/*.*"
     values:
       sitemap: false
-  - scope:
-      path: "assets/33039d0949ec7f6045098e918618c099/**"
-    values:
-      sitemap: true
+
 
 # -----------------------------------------------------------------------------
 # Jekyll Minifier
