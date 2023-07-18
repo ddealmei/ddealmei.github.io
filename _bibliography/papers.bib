@@ -1,5 +1,36 @@
 ---
 ---
+@inproceedings{braga2023dragondoom,
+  title={From Dragondoom to Dragonstar: Side-Channel Attacks and Formally Verified Implementation of WPA3 Dragonfly Handshake},
+  author={Braga, Daniel De Almeida and Kulatova, Natalia and Sabt, Mohamed and Fouque, Pierre-Alain and Bhargavan, Karthikeyan},
+  booktitle={2023 IEEE 8th European Symposium on Security and Privacy (EuroS\&P)},
+  pages={707--723},
+  year={2023},
+  organization={IEEE Computer Society}
+}
+
+@inproceedings{braga2023dragondoom,
+  author    = {De Almeida Braga, D. and 
+               Kulatova, N. and
+               Sabt, M. and 
+               Fouque, P. and 
+               Bhargavan, K.},
+  booktitle={2023 IEEE 8th European Symposium on Security and Privacy (EuroS\&P)},
+  pages={707--723},
+  title     = {From Dragondoom to Dragonstar: Side-channel Attacks and Formally Verified Implementation of WPA3 Dragonfly Handshake},
+  year      = {2023},
+  month     = {july},
+  pdf       = {2023-eurosp-dragondoom.pdf},
+  abstract  = {It is universally acknowledged that Wi-Fi communications are important to secure. Thus, the Wi-Fi Alliance published WPA3 in 2018 with a distinctive security feature: it leverages a Password-Authenticated Key Exchange (PAKE) protocol to protect users' passwords from offline dictionary attacks. Unfortunately, soon after its release, several attacks were reported against its implementations, in response to which the protocol was updated in a best-effort manner.
+
+In this paper, we show that the proposed mitigations are not enough, especially for a complex protocol to implement even for savvy developers. Indeed, we present Dragondoom, a collection of side-channel vulnerabilities of varying strength allowing attackers to recover users' passwords in widely deployed Wi-Fi daemons, such as hostap in its default settings. Our findings target both password conversion methods, namely the default probabilistic hunting-and-pecking and its newly standardized deterministic alternative based on SSWU. We successfully exploit our leakage in practice through microarchitectural mechanisms, despite the limited spatial resolution of Flush+Reload. Our attacks outperform previous works in terms of required measurements.
+
+Then, driven by the need to end the spiral of patch-and-hack in Dragonfly implementations, we propose Dragonstar, an implementation of Dragonfly leveraging a formally verified implementation of the underlying mathematical operations, thereby removing all the related leakage vector. Our implementation relies on HACL*, a formally verified crypto library guaranteeing secret-independence. We design Dragonstar, so that its integration within hostap requires minimal modifications to the existing project. Our experiments show that the performance of HACL*-based hostap is comparable to OpenSSL-based, implying that Dragonstar is both efficient and proved to be leakage-free.},
+  bibtex_show = {true}, 
+  % code      = {},
+  rank      = {A},
+  selected  = {true}
+}
 
 @inproceedings{IEEE:conf/sp/JancarFBSSBFA21,
   author    = {Jancar, J. and 
