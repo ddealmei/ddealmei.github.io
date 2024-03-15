@@ -124,9 +124,9 @@ collections:
   resume:
     output: true
     permalink: /resume/:path/  
-  projects:
-    output: true
-    permalink: /projects/:path/
+  # projects:
+  #   output: true
+  #   permalink: /projects/:path/
 
 news_limit: 5
 
