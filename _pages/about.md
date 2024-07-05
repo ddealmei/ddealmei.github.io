@@ -7,14 +7,15 @@ permalink: /
 profile:
   align: right
   image: prof_pic.jpg
-  # address: >
-  #   <p>Bat. 12, Office F407</p>
-  #   <p>IRISA, Rennes (France)</p>
+  image_circular: false # crops the image to make it circular
+  more_info: >
+     <p>Bat. 12, Office F435</p>
+     <p>IRISA, Rennes (France)</p>
 
-news: true  # includes a list of news items
+news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 invitations: true # includes a list of invitation / PC / reviews "selected={true}"
-social: true  # includes social icons at the bottom of the page
+social: true # includes social icons at the bottom of the page
 ---
 
 My research focuses on vulnerabilities in cryptographic implementations, which can be related to the core protocol (if there is an issue in the specification) or implementation-specific (side channels or any information leak). I am also developing a strong interest in microarchitectural security, with practical exploitation.
