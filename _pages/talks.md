@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: /taks/
+permalink: /talks/
 title: talks
 description: My talks
 nav: true
