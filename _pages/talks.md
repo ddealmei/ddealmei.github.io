@@ -4,7 +4,7 @@ permalink: /talks/
 title: talks
 description: My talks
 nav: true
-nav_order: 2
+nav_order: 3
 ---
 <!-- page.html -->
 <div class="publications">
