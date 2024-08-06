@@ -204,9 +204,9 @@ collections:
   resume:
     output: true
     permalink: /resume/:path/  
-  # projects:
-  #   output: true
-  #   permalink: /projects/:path/
+  courses:
+    output: true
+    permalink: /teaching/:path/
 
 announcements:
   enabled: true
