@@ -64,6 +64,11 @@ layout: default
       {% include selected_papers.liquid %}
     {% endif %}
 
+    <!-- Service and invitations -->
+    {% if page.invitations %}
+      {% include invitations.html %}
+    {% endif %}
+
     <!-- Social -->
     {% if page.social %}
       <div class="social">
