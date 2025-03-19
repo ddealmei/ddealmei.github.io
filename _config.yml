@@ -6,7 +6,7 @@ title: Daniel De Almeida Braga # the website title (if blank, full name will be 
 first_name: Daniel
 middle_name:
 last_name: De Almeida Braga
-email: ddealmei.0@gmail.com
+email: daniel.de-almeida-braga@irisa.fr
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   My personal website, that I use mostly as a portfolio. I try to update it frequently, but it may miss most recent informations.
   Based on [*folio](https://github.com/bogoli/-folio) design.

