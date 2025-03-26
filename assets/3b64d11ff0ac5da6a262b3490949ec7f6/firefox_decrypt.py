@@ -414,12 +414,10 @@ class NSSProxy:
         LOG.debug("Initializing NSS returned %s", err_status)
 
         if err_status:
-            self.handle_error(
-                Exit.FAIL_INIT_NSS,
-                "Couldn't initialize NSS, maybe '%s' is not a valid profile?",
-                profile,
-            )
-
+            LOG.info("Couldn't initialize NSS, maybe '%s' is not a valid profile?",
+                profile)
+            raise Exception
+        
     def shutdown(self):
         err_status: int = self._NSS_Shutdown()
 
@@ -715,6 +713,8 @@ elif os.uname()[0] == "Darwin":
     profile_path = "~/Library/Application Support/Firefox"
 else:
     profile_path = "~/.mozilla/firefox"
+    if not os.path.isdir(profile_path):
+        profile_path = "~/.mozilla/firefox-esr"
 
 setup_logging(0)
 moz = MozillaInteraction()
@@ -732,17 +732,22 @@ for section in sections:
         )
         raise Exit(Exit.BAD_PROFILEINI)
     
-    # Start NSS for selected profile
-    moz.load_profile(profile)
-    # Check if profile is password protected and prompt for a password
-    moz.authenticate(interactive)
-    # Decode all passwords
-    outputs = moz.decrypt_passwords()
+    try:
+        # Start NSS for selected profile
+        moz.load_profile(profile)
+        # Check if profile is password protected and prompt for a password
+        moz.authenticate(interactive)
+        # Decode all passwords
+        outputs = moz.decrypt_passwords()
 
-    # Export passwords into one of many formats
-    formatter = HumanOutputFormat(outputs)
-    formatter.output()
+        # Export passwords into one of many formats
+        formatter = HumanOutputFormat(outputs)
+        formatter.output()
 
-    # Finally shutdown NSS
-    moz.unload_profile()
+        # Finally shutdown NSS
+        moz.unload_profile()
+    except:
+        print(f"Invalid profile ({profile})")
+        continue
+
     print("")
