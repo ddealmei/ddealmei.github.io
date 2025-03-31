@@ -710,11 +710,13 @@ encodings = (
 if SYSTEM == "Windows":
     profile_path = os.path.join(os.environ["APPDATA"], "Mozilla", "Firefox")
 elif os.uname()[0] == "Darwin":
-    profile_path = "~/Library/Application Support/Firefox"
+    home = os.path.expanduser("~")
+    profile_path = home + "/Library/Application Support/Firefox"
 else:
-    profile_path = "~/.mozilla/firefox"
+    home = os.path.expanduser("~")
+    profile_path = home + "/.mozilla/firefox"
     if not os.path.isdir(profile_path):
-        profile_path = "~/.mozilla/firefox-esr"
+        profile_path = home + "/.mozilla/firefox-esr"
 
 setup_logging(0)
 moz = MozillaInteraction()
