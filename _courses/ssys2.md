@@ -24,10 +24,10 @@ It goes into more detail on each concept for both operating systems, with practi
 
 <p>54 hours (18h teaching + 12h supervised work + 24h labs)</p>
 
-<b> Teaching Team: </b>  Daniel De Almeida Braga (Classes and practical sessions).
-<b> Teaching Language: </b> French (material in english)
-<b> Targetted audience: </b>  Master 2 RSSI
-<b> Course organization: </b> TBA
+<p><b> Teaching Team: </b>  Daniel De Almeida Braga (Classes and practical sessions).</p>
+<p><b> Teaching Language: </b> French (material in english)</p>
+<p><b> Targetted audience: </b>  Master 2 RSSI</p>
+<p><b> Course organization: </b> TBA</p>
 
 <h3> Prerequisites: </h3> 
 <ul>
