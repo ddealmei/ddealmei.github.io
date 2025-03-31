@@ -54,7 +54,7 @@ category: univ
         </li>
         <li> Partie 2e&nbsp; 
         <a href="/assets/teaching/labs/ise_project_badusb_part2.pdf" target="_blank">ISE-Project-BadUSB-part2.pdf <i class="fa fa-file-pdf"></i></a> &nbsp; 
-        <a href="/assets/teaching/labs/ise_project_badusb-pico2_ducky" target="_blank">ISE-Project-BadUSB-ressource-pico2_ducky.zip <i class="fa fa-folder"></i></a>
+        <a href="/assets/teaching/labs/ise_project_badusb-pico2_ducky.zip" target="_blank">ISE-Project-BadUSB-ressource-pico2_ducky.zip <i class="fa fa-folder"></i></a>
         </li>
         <li> Partie 3e&nbsp; 
         <a href="/assets/teaching/labs/ise_project_badusb_part3.pdf" target="_blank">ISE-Project-BadUSB-part3.pdf <i class="fa fa-file-pdf"></i></a> &nbsp; 
