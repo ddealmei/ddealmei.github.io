@@ -9,6 +9,7 @@ location: Universite de Rennes
 time: Reverse-course sessions with quizzes and practical work
 course_id: senv
 img: assets/img/logo_cyberschool.svg
+teaching_status: current
 schedule:
   - topic: Course organization
     description: Course format, video-based preparation, quizzes, and practical sessions.

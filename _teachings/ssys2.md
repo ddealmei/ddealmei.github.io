@@ -9,6 +9,7 @@ location: CyberSchool, Universite de Rennes
 time: 54 hours (18h teaching + 18h supervised work + 18h labs)
 course_id: ssys2
 img: assets/img/logo_cyberschool.svg
+teaching_status: current
 schedule:
   - topic: Course organization
     description: Course goals, structure, and expectations.

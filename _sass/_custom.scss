@@ -89,11 +89,41 @@ blockquote {
 }
 
 /* Image-first teaching index cards. */
+.teaching-index-section {
+  margin-top: 2rem;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.teaching-section-title {
+  border-bottom: 1px solid var(--global-divider-color);
+  color: var(--global-theme-color);
+  font-family: inherit;
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.45rem;
+  text-transform: lowercase;
+}
+
 .teaching-image-grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 767.98px) {
+  .teaching-image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .teaching-image-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .teaching-image-card {
@@ -153,11 +183,15 @@ blockquote {
 }
 
 .teaching-image-title {
+  align-items: center;
+  display: flex;
   font-family: inherit;
   font-size: 1.05rem;
   font-weight: 600;
+  justify-content: center;
   line-height: 1.25;
   margin: 0;
+  min-height: 4rem;
   padding: 1rem 1.1rem;
   text-align: center;
 }

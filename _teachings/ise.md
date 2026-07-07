@@ -9,6 +9,7 @@ location: ISTIC, Universite de Rennes
 time: 1h30 lecture, 3h lab, 9h project
 course_id: ise
 img: assets/img/logo_istic.png
+teaching_status: current
 schedule:
   - topic: Introduction to system security
     description: Threat modeling, attacker models, defense in depth, and least privilege.
