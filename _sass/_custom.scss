@@ -18,6 +18,53 @@
   z-index: -10;
 }
 
+/* Keep the v1 navbar usable with a longer personal site title. */
+@media (min-width: 576px) {
+  .navbar {
+    .navbar-brand {
+      flex-shrink: 1;
+      max-width: 14rem;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .navbar-nav .nav-link {
+      padding-left: 0.45rem;
+      padding-right: 0.45rem;
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .navbar.navbar-expand-sm {
+    flex-wrap: wrap;
+
+    .navbar-toggler-main {
+      display: block;
+    }
+
+    .navbar-collapse-main {
+      display: none !important;
+      flex-basis: 100%;
+      text-align: left;
+    }
+
+    .navbar-collapse-main.show {
+      display: block !important;
+    }
+
+    .navbar-menu-list {
+      align-items: flex-start;
+      flex-direction: column;
+      flex-wrap: nowrap !important;
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}
+
 /* Small local typography and publication tweaks. */
 blockquote {
   background: var(--global-bg-color);
@@ -36,8 +83,15 @@ blockquote {
     li {
       .abbr {
         .rank-badge {
-          display: inline-block;
-          margin-bottom: 0.5rem;
+          display: inline-flex;
+          font-size: 0.72rem;
+          justify-content: center;
+          line-height: 1;
+          margin-bottom: 0.35rem;
+          min-width: 1.75rem;
+          padding: 0.2rem 0.35rem;
+          width: auto !important;
+          white-space: nowrap;
         }
       }
 
