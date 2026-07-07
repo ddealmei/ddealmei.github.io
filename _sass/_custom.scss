@@ -18,6 +18,11 @@
   z-index: -10;
 }
 
+/* Tailwind's .collapse utility collides with Bootstrap navbar markup. */
+#navbar .navbar-collapse {
+  visibility: visible;
+}
+
 /* Keep the v1 navbar usable with a longer personal site title. */
 @media (min-width: 576px) {
   .navbar {
@@ -33,34 +38,6 @@
     .navbar-nav .nav-link {
       padding-left: 0.45rem;
       padding-right: 0.45rem;
-    }
-  }
-}
-
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .navbar.navbar-expand-sm {
-    flex-wrap: wrap;
-
-    .navbar-toggler-main {
-      display: block;
-    }
-
-    .navbar-collapse-main {
-      display: none !important;
-      flex-basis: 100%;
-      text-align: left;
-    }
-
-    .navbar-collapse-main.show {
-      display: block !important;
-    }
-
-    .navbar-menu-list {
-      align-items: flex-start;
-      flex-direction: column;
-      flex-wrap: nowrap !important;
-      margin-left: 0;
-      width: 100%;
     }
   }
 }
