@@ -1,7 +1,8 @@
 ---
 layout: course
 title: ISE
-description: Introduction à la Sécurité - Module système.
+short_title: ISE
+description: "Introduction à la sécurité: first contact with system security, threat models, and practical defensive reasoning."
 instructor: Daniel De Almeida Braga
 year: 2025
 term: L1 ISTN
@@ -15,38 +16,42 @@ schedule:
     description: Threat modeling, attacker models, defense in depth, and least privilege.
     materials:
       - name: System security slides
-        url: /assets/teaching/slides/ise_system_slides.pdf
+        url: /assets/teaching/ise/cours/L1-INFO-ISE-CM-System_Security-2025_26.pdf
   - topic: System security lab
-    description: First practical session for the system part of the course.
+    description: First practical session on local systems, permissions, execution context, and basic security reflexes.
     materials:
       - name: Lab subject
-        url: /assets/teaching/labs/ise_system_lab01_subject.pdf
+        url: /assets/teaching/ise/tp/L1-ISE-TP_Systeme-2025_26.pdf
       - name: Lab addition
-        url: /assets/teaching/labs/ise_system_lab01_addition.pdf
+        url: /assets/teaching/ise/tp/ise_system_lab01_addition.pdf
+      - name: Lab resources
+        url: /assets/teaching/ise/tp/ressources.zip
   - topic: BadUSB project
     description: Multi-part project around BadUSB-style attacks and defenses.
     materials:
       - name: Part 1
-        url: /assets/teaching/labs/ise_project_badusb_part1.pdf
+        url: /assets/teaching/ise/projet/L1-INFO-ISE-Projet_BadUSB_partie_1-2024-2025.pdf
       - name: Part 2
-        url: /assets/teaching/labs/ise_project_badusb_part2.pdf
+        url: /assets/teaching/ise/projet/L1-INFO-ISE-Projet_BadUSB_partie_2-2024-2025.pdf
       - name: Part 3
-        url: /assets/teaching/labs/ise_project_badusb_part3.pdf
+        url: /assets/teaching/ise/projet/L1-INFO-ISE-Projet_BadUSB_partie_3-2024-2025.pdf
+      - name: Part 4
+        url: /assets/teaching/ise/projet/L1-INFO-ISE-Projet_BadUSB_partie_4-2024-2025.pdf
       - name: Firefox decrypt notebook
-        url: /assets/teaching/labs/ise_project_badusb-firefox_decrypt.ipynb
+        url: /assets/teaching/ise/projet/firefox_decrypt_notebook.zip
       - name: Pico Ducky resources
-        url: /assets/teaching/labs/ise_project_badusb-pico2_ducky.zip
+        url: /assets/teaching/ise/projet/pico2-ducky.zip
 ---
 
 ## Course Description
 
 This course is intended for L1 ISTN students. The unit gives a first experience of cybersecurity through a panorama of privacy, system security, reverse engineering, cryptography, and related topics.
 
-This part only covers *system's security*. Especially, it covers the following questions:
-- What are we considering as a *system*?
+This page covers the system-security part of the course. It focuses on the following questions:
+- What are we considering as a system?
 - How to identify threats?
 - What's an attacker model, and how to define it?
-- How did cyber-threats evolved in the last decades? 
+- How did cyber-threats evolve in the last decades?
 
 ## Prerequisites
 
