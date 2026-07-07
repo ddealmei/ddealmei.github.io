@@ -88,6 +88,80 @@ blockquote {
   }
 }
 
+/* Image-first teaching index cards. */
+.teaching-image-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 1.5rem;
+}
+
+.teaching-image-card {
+  background: var(--global-card-bg-color);
+  border: 1px solid var(--global-divider-color);
+  border-radius: 6px;
+  color: var(--global-text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 13rem;
+  overflow: hidden;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    border-color: var(--global-theme-color);
+    box-shadow: 0 0.45rem 1rem rgb(0 0 0 / 8%);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  &:hover .teaching-image-title {
+    color: var(--global-theme-color);
+  }
+}
+
+.teaching-image-frame {
+  align-items: center;
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  border-bottom: 1px solid var(--global-divider-color);
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.teaching-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.teaching-image-placeholder {
+  align-items: center;
+  background: var(--global-theme-color);
+  border-radius: 50%;
+  color: var(--global-bg-color);
+  display: flex;
+  font-size: 2.5rem;
+  font-weight: 600;
+  height: 5rem;
+  justify-content: center;
+  width: 5rem;
+}
+
+.teaching-image-title {
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+  padding: 1rem 1.1rem;
+  text-align: center;
+}
+
 /* Timeline used by talks and resume-style lists. */
 .resume-title {
   color: var(--global-text-color);

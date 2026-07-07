@@ -187,11 +187,6 @@ collections:
   talks:
     output: true
     permalink: /talks/:path/
-  resume:
-    output: true
-    permalink: /resume/:path/
-  courses:
-    output: false
   teachings:
     output: true
     permalink: /teaching/:path/
