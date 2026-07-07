@@ -6,6 +6,15 @@ const root = process.cwd();
 const read = (relPath) => fs.readFileSync(path.join(root, relPath), "utf8");
 const exists = (relPath) => fs.existsSync(path.join(root, relPath));
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const listFiles = (relPath) => {
+  const absPath = path.join(root, relPath);
+  if (!fs.existsSync(absPath)) return [];
+  const stat = fs.statSync(absPath);
+  if (stat.isFile()) return [relPath];
+  return fs
+    .readdirSync(absPath, { withFileTypes: true })
+    .flatMap((entry) => listFiles(path.join(relPath, entry.name)));
+};
 
 const failures = [];
 
@@ -61,9 +70,20 @@ if (/gem 'al_math',\s*:git =>/.test(gemfile)) {
   failures.push("`Gemfile` must not use git-branch pin for `al_math`; use released gem version.");
 }
 
+const intentionalOverridePaths = new Set([
+  "_includes/invitations.html",
+  "_layouts/about.liquid",
+  "_layouts/bib.liquid",
+  "_layouts/default.liquid",
+  "_sass/_custom.scss",
+  "assets/css/main.scss",
+]);
+
 for (const forbiddenPath of ["_includes", "_layouts", "_sass", "_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
-  if (exists(forbiddenPath)) {
-    failures.push(`Starter must not own core component path \`${forbiddenPath}\`; move ownership to the corresponding gem.`);
+  for (const ownedPath of listFiles(forbiddenPath)) {
+    if (!intentionalOverridePaths.has(ownedPath)) {
+      failures.push(`Starter must not own core component path \`${ownedPath}\`; move ownership to the corresponding gem.`);
+    }
   }
 }
 

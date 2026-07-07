@@ -1,0 +1,152 @@
+/* particles.js background */
+#particles-js canvas {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.8s ease,
+    transform 1.4s ease;
+  vertical-align: bottom;
+}
+
+#particles-js {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -10;
+}
+
+/* Small local typography and publication tweaks. */
+blockquote {
+  background: var(--global-bg-color);
+  border-left: 5px solid var(--global-theme-color);
+  font-size: 1.2rem;
+  margin: 1.5em 0;
+  padding: 1em;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.publications {
+  ol.bibliography {
+    li {
+      .abbr {
+        .rank-badge {
+          display: inline-block;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .links {
+        a.award.btn {
+          border: 3px solid var(--global-highlight-color);
+          color: var(--global-highlight-color);
+        }
+      }
+    }
+
+    div.award.hidden.open {
+      border-color: var(--global-highlight-color);
+    }
+  }
+}
+
+/* Timeline used by talks and resume-style lists. */
+.resume-title {
+  color: var(--global-text-color);
+  font-weight: 500;
+}
+
+.resume-list {
+  li {
+    list-style: none;
+    padding: 0 15px 50px 40px;
+    position: relative;
+  }
+
+  li::before {
+    border: 2px solid #a2a2a2;
+    border-radius: 50%;
+    content: "";
+    height: 16px;
+    left: 3px;
+    position: absolute;
+    top: 4px;
+    width: 16px;
+  }
+
+  li::after {
+    background-color: #a2a2a2;
+    border-radius: 3px;
+    content: "";
+    height: calc(100% - 43px);
+    left: 10px;
+    position: absolute;
+    top: 33px;
+    width: 2px;
+  }
+
+  li:last-child::after {
+    content: none;
+  }
+
+  h2 {
+    font-family: inherit;
+    font-size: 18px;
+    margin-bottom: 1rem;
+
+    span {
+      font-size: 1.5rem;
+    }
+  }
+
+  h2.year {
+    border-top: 1px solid var(--global-divider-color);
+    color: var(--global-divider-color);
+    margin-bottom: -2rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    text-align: right;
+  }
+
+  h3,
+  h4 {
+    font-weight: 500;
+  }
+
+  h4 {
+    font-family: inherit;
+    font-size: 18px;
+  }
+
+  span.time,
+  span.place,
+  span.title {
+    color: var(--global-text-color);
+  }
+
+  span.time,
+  span.place {
+    font-size: 0.875em;
+  }
+
+  span.time {
+    font-weight: 300;
+  }
+
+  span.place {
+    font-style: italic;
+  }
+
+  span.title {
+    font-weight: bolder;
+  }
+}
+
+section.resume h3 {
+  font-size: 1.5em;
+}

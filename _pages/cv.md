@@ -1,12 +1,12 @@
 ---
-layout: cv
+layout: page
 permalink: /cv/
-title: CV
+title: cv
 nav: true
 nav_order: 5
-cv_pdf: /assets/pdf/example_pdf.pdf # you can also use external links here
-cv_format: rendercv # options: rendercv, jsonresume
-description: This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.
-toc:
-  sidebar: left
+description: You can download my short CV here. Please contact me if you want more information, or a more updated one.
+# toc:
+#   sidebar: left
 ---
+
+[Download my short CV]({{ '/assets/pdf/cv-ddealmei.pdf' | relative_url }}){: .btn .btn-sm .z-depth-0}

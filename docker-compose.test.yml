@@ -1,0 +1,25 @@
+services:
+  test:
+    image: ddealmei-al-folio-v1-test
+    build: .
+    working_dir: /srv/jekyll
+    volumes:
+      - .:/srv/jekyll
+      - bundle-cache:/usr/local/bundle
+      - npm-cache:/root/.npm
+    environment:
+      JEKYLL_ENV: production
+      EXECJS_RUNTIME: Node
+      BUNDLE_PATH: /usr/local/bundle
+    command: >
+      bash -lc "bundle install &&
+      npm ci &&
+      bundle exec al-folio upgrade audit --no-fail &&
+      bundle exec al-folio upgrade overrides audit &&
+      bundle exec al-folio upgrade report &&
+      npm run lint:style-contract &&
+      bundle exec jekyll build"
+
+volumes:
+  bundle-cache:
+  npm-cache:
