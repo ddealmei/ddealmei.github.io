@@ -23,7 +23,8 @@ latest_posts:
   enabled: false
 ---
 
-I am an Associate Professor at IRISA Rennes. My research focuses on vulnerabilities in cryptographic implementations, which can be related to the core protocol (if there is an issue in the specification) or implementation-specific (side channels or any information leak). I am also developing a strong interest in microarchitectural security, with practical exploitation.
+I am an Associate Professor at IRISA Rennes, in the [CAPSULE](https://team.inria.fr/capsule/team-members/) team. My research focuses on vulnerabilities in cryptographic implementations, which can be related to the core protocol (if there is an issue in the specification) or implementation-specific (side channels or any information leak). I am also developing a strong interest in microarchitectural security, with practical exploitation.
+Teaching-wise, in mostly teach about computer science and cybersecurity. I am co-head of the CISO master degree, with [François Lemercier](https://francoislemercier.com) and [Gwendal Patat](https://avalonswanderer.github.io/).
 
 I got my PhD from the Universisty of Rennes in 2022, with the supervision of [Pierre-Alain Fouque](https://www.di.ens.fr/~fouque/) and [Mohamed Sabt](http://people.irisa.fr/Mohamed.Sabt/) in the [SPICY](https://spicy.irisa.fr/) team (former EMSEC) at IRISA in Rennes. My work was awarded the Google PhD fellowship in Privacy & Security, which allowed me to visit [Daniel Gruss](https://gruss.cc/)'s team [CoreSec](https://www.iaik.tugraz.at/research-area/securesystems/) at Graz University of Technology for 4 months in 2023.
 
