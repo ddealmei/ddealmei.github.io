@@ -191,11 +191,10 @@ collections:
     output: true
     permalink: /resume/:path/
   courses:
-    output: true
-    permalink: /teaching/:path/
+    output: false
   teachings:
     output: true
-    permalink: /teaching-v1/:path/
+    permalink: /teaching/:path/
 
 # -----------------------------------------------------------------------------
 # Jekyll settings

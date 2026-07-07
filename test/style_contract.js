@@ -74,6 +74,7 @@ const intentionalOverridePaths = new Set([
   "_includes/invitations.html",
   "_layouts/about.liquid",
   "_layouts/bib.liquid",
+  "_layouts/course.liquid",
   "_layouts/default.liquid",
   "_sass/_custom.scss",
   "assets/css/main.scss",

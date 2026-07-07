@@ -9,25 +9,19 @@ location: ISTIC, Universite de Rennes
 time: 1h30 lecture, 3h lab, 9h project
 course_id: ise
 schedule:
-  - week: 1
-    date: TBA
-    topic: Introduction to system security
+  - topic: Introduction to system security
     description: Threat modeling, attacker models, defense in depth, and least privilege.
     materials:
       - name: System security slides
         url: /assets/teaching/slides/ise_system_slides.pdf
-  - week: 2
-    date: TBA
-    topic: System security lab
+  - topic: System security lab
     description: First practical session for the system part of the course.
     materials:
       - name: Lab subject
         url: /assets/teaching/labs/ise_system_lab01_subject.pdf
       - name: Lab addition
         url: /assets/teaching/labs/ise_system_lab01_addition.pdf
-  - week: 3
-    date: TBA
-    topic: BadUSB project
+  - topic: BadUSB project
     description: Multi-part project around BadUSB-style attacks and defenses.
     materials:
       - name: Part 1

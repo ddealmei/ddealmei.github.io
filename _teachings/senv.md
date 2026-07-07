@@ -9,20 +9,14 @@ location: Universite de Rennes
 time: Reverse-course sessions with quizzes and practical work
 course_id: senv
 schedule:
-  - week: 1
-    date: TBA
-    topic: Course organization
+  - topic: Course organization
     description: Course format, video-based preparation, quizzes, and practical sessions.
     materials:
       - name: Organization slides
         url: /assets/teaching/slides/senv_0_organization.pdf
-  - week: 2
-    date: TBA
-    topic: Cybersecurity primer and information leakage
+  - topic: Cybersecurity primer and information leakage
     description: Complementary discussion around the MOOC chapters and current threats.
-  - week: 3
-    date: TBA
-    topic: Practical session
+  - topic: Practical session
     description: Complementary hands-on exercise material.
     materials:
       - name: Payload

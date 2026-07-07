@@ -9,23 +9,17 @@ location: CyberSchool, Universite de Rennes
 time: 54 hours
 course_id: ssys2
 schedule:
-  - week: 1
-    date: TBA
-    topic: Course organization
+  - topic: Course organization
     description: Course goals, structure, and expectations.
     materials:
       - name: Organization slides
         url: /assets/teaching/slides/ssys2_0_organization.pdf
-  - week: 2
-    date: TBA
-    topic: Introduction
+  - topic: Introduction
     description: System security foundations and defense in depth.
     materials:
       - name: Introduction slides
         url: /assets/teaching/slides/ssys2_1_introduction.pdf
-  - week: 3
-    date: TBA
-    topic: Authentication
+  - topic: Authentication
     description: Authentication mechanisms and deployment considerations.
     materials:
       - name: Authentication slides
