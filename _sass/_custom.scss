@@ -60,14 +60,16 @@ blockquote {
     li {
       .abbr {
         .rank-badge {
-          display: inline-flex;
-          font-size: 0.72rem;
+          box-sizing: border-box;
+          display: flex;
+          font-size: 0.85rem;
           justify-content: center;
           line-height: 1;
-          margin-bottom: 0.35rem;
-          min-width: 1.75rem;
-          padding: 0.2rem 0.35rem;
-          width: auto !important;
+          margin: 0.1rem auto 0.55rem;
+          max-width: 4.75rem;
+          min-width: 2.5rem;
+          padding: 0.35rem 0.6rem;
+          width: calc(100% - 1rem) !important;
           white-space: nowrap;
         }
       }
