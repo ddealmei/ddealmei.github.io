@@ -1,13 +1,14 @@
 ---
 layout: course
 title: ISE
-description: Introduction a la securite - Module systeme.
+description: Introduction à la Sécurité - Module système.
 instructor: Daniel De Almeida Braga
 year: 2025
 term: L1 ISTN
 location: ISTIC, Universite de Rennes
 time: 1h30 lecture, 3h lab, 9h project
 course_id: ise
+img: assets/img/logo_istic.png
 schedule:
   - topic: Introduction to system security
     description: Threat modeling, attacker models, defense in depth, and least privilege.
@@ -40,7 +41,11 @@ schedule:
 
 This course is intended for L1 ISTN students. The unit gives a first experience of cybersecurity through a panorama of privacy, system security, reverse engineering, cryptography, and related topics.
 
-This page mirrors only the system security part of the course in the upstream al-folio course layout.
+This part only covers *system's security*. Especially, it covers the following questions:
+- What are we considering as a *system*?
+- How to identify threats?
+- What's an attacker model, and how to define it?
+- How did cyber-threats evolved in the last decades? 
 
 ## Prerequisites
 
