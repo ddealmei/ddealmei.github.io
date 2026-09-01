@@ -197,6 +197,10 @@ def find_nss(locations: list[str], nssname: str) -> ct.CDLL:
                 os.chdir(loc)
 
         try:
+            # Workaround for Linux, because Firefox 144 broke compatibility.
+            # see https://github.com/unode/firefox_decrypt/issues/120
+            if SYSTEM not in OS:
+                nssutil: ct.CDLL = ct.CDLL(os.path.join(loc, "libnssutil3.so"))
             nss: ct.CDLL = ct.CDLL(nsslib)
         except OSError as e:
             fail_errors.append((nsslib, str(e)))
@@ -243,7 +247,7 @@ def load_libnss():
     """Load libnss into python using the CDLL interface"""
 
     locations: list[str] = [
-        os.environ.get("NSS_LIB_PATH", ""),
+        # os.environ.get("NSS_LIB_PATH", ""),
     ]
 
     if SYSTEM == "Windows":
@@ -305,6 +309,7 @@ def load_libnss():
         nssname = "libnss3.so"
         if SYS64:
             locations += [
+                "/usr/lib/firefox", # first because of compatibility issues
                 "",  # Current directory or system lib finder
                 "/usr/lib64",
                 "/usr/lib64/nss",
@@ -318,6 +323,7 @@ def load_libnss():
             ]
         else:
             locations += [
+                "/usr/lib/firefox", # first because of compatibility issues
                 "",  # Current directory or system lib finder
                 "/usr/lib",
                 "/usr/lib/nss",
