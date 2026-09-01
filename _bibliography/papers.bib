@@ -1,6 +1,31 @@
 ---
 ---
 
+@inproceedings{de2026toward,
+  title     = {Toward a Secure Fixed-Point Implementation of the Falcon Signature Scheme},
+  author    = { De Almeida Braga, Daniel and
+                Fouque, Pierre-Alain and 
+                Lachguel, Bachir and 
+                Prest, Thomas},
+  booktitle = {Annual International Cryptology Conference},
+  pages     = {166--197},
+  year      = {2026},
+  organization={Springer},
+  pdf       = {2026-crypto-falcon_fxp.pdf},
+  abstract = { Falcon was selected by NIST in 2022 for standardization as a post-quantum digital signature scheme. Among all standardized signature schemes, Falcon achieves the smallest signature size. Its main drawback, however, is its reliance on floating-point arithmetic, which plays a critical role in the security analysis. In particular, the security of the sampling algorithm depends on relative error bounds in the analysis of Prest (ASIACRYPT 2017). This reliance poses significant challenges for practical implementations: some platforms lack floating-point units, floating-point division is not constant time on many processors, and protecting floating-point computations against side-channel attacks using masking techniques is particularly difficult on embedded devices.
+
+To address portability issues, Pornin proposed an implementation of Falcon that emulates floating-point arithmetic using integer operations only. While this approach enables deployment on a wider range of platforms, it incurs a substantial performance penalty compared to the native floating-point implementation (EPRINT 2019/893).
+
+In this work, we revisit the security analysis of Falcon's sampling algorithm and propose a new analysis based on absolute error bounds. We provide experiments to estimate error bounds. Building on this analysis, we present an efficient implementation relying solely on fixed-point arithmetic. Our approach requires a careful estimation of variable ranges and a precise determination of the required numerical precision. To this end, we devise lemmas that adapt the security analysis to absolute error. Furthermore, to obtain tighter bounds on the sampler inputs, we slightly modify the key generation procedure, following an approach similar to the Antrag key generation. The generated keys are genuine Falcon ones and they yield valid signatures with a distribution very close to the floating-point implementation once a key is fixed.
+
+Our C fixed-point implementation is approximately a factor of two slower than the original floating-point Falcon implementation, but achieves a speedup of five to ten times compared to integer-only implementations that emulate floating-point arithmetic.},
+  bibtex_show = {true}, 
+  code      = {https://github.com/fixed-point-fndsa/},
+  rank      = {A*},
+  selected  = {true}
+}
+
+
 @inproceedings{2024usec,
   author    = {Fourné, Marcel and 
                De Almeida Braga, Daniel and 
