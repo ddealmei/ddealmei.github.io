@@ -33,7 +33,7 @@ from subprocess import run, PIPE, DEVNULL
 from configparser import ConfigParser
 from typing import Optional, Iterator
 
-LOG: logging.Logger
+LOG: logging.Logger = logging.getLogger(__name__)
 VERBOSE = False
 SYSTEM = platform.system()
 SYS64 = sys.maxsize > 2**32
@@ -41,8 +41,15 @@ DEFAULT_ENCODING = "utf-8"
 
 PWStore = list[dict[str, str]]
 
+
 class NotFoundError(Exception):
     """Exception to handle situations where a credentials file is not found"""
+
+    pass
+
+
+class UnsupportedBackendError(Exception):
+    """Raised for Firefox's new Rust/SQLite credentials store (logins.db)."""
 
     pass
 
@@ -176,7 +183,7 @@ def find_nss(locations: list[str], nssname: str) -> ct.CDLL:
 
     OS = ("Windows", "Darwin")
 
-    for loc in locations:
+    for loc in dict.fromkeys(locations):
         nsslib = os.path.join(loc, nssname)
         LOG.debug("Loading NSS library from %s", nsslib)
 
@@ -197,10 +204,14 @@ def find_nss(locations: list[str], nssname: str) -> ct.CDLL:
                 os.chdir(loc)
 
         try:
-            # Workaround for Linux, because Firefox 144 broke compatibility.
-            # see https://github.com/unode/firefox_decrypt/issues/120
-            if SYSTEM not in OS:
-                nssutil: ct.CDLL = ct.CDLL(os.path.join(loc, "libnssutil3.so"))
+            # A recent Firefox may bundle a newer NSS than the operating system.
+            # Preload its matching dependencies before libnss3 to avoid mixing
+            # incompatible system and Firefox libraries.
+            if SYSTEM not in OS and loc:
+                for dependency in ("libmozglue.so", "libnssutil3.so"):
+                    dependency_path = os.path.join(loc, dependency)
+                    if os.path.isfile(dependency_path):
+                        ct.CDLL(dependency_path, mode=ct.RTLD_GLOBAL)
             nss: ct.CDLL = ct.CDLL(nsslib)
         except OSError as e:
             fail_errors.append((nsslib, str(e)))
@@ -246,9 +257,9 @@ def find_nss(locations: list[str], nssname: str) -> ct.CDLL:
 def load_libnss():
     """Load libnss into python using the CDLL interface"""
 
-    locations: list[str] = [
-        # os.environ.get("NSS_LIB_PATH", ""),
-    ]
+    locations: list[str] = []
+    if os.environ.get("NSS_LIB_PATH"):
+        locations.append(os.environ["NSS_LIB_PATH"])
 
     if SYSTEM == "Windows":
         nssname = "nss3.dll"
@@ -307,9 +318,16 @@ def load_libnss():
 
     else:
         nssname = "libnss3.so"
+        # Prefer the libraries shipped with the installed browser. Loading the
+        # distribution's older libnss3 first can make recent key4.db files fail.
+        for binary in ("firefox", "firefox-esr"):
+            location = shutil.which(binary)
+            if location is not None:
+                locations.append(os.path.dirname(os.path.realpath(location)))
         if SYS64:
             locations += [
-                "/usr/lib/firefox", # first because of compatibility issues
+                "/usr/lib/firefox",
+                "/usr/lib/firefox-esr",
                 "",  # Current directory or system lib finder
                 "/usr/lib64",
                 "/usr/lib64/nss",
@@ -323,7 +341,6 @@ def load_libnss():
             ]
         else:
             locations += [
-                "/usr/lib/firefox", # first because of compatibility issues
                 "",  # Current directory or system lib finder
                 "/usr/lib",
                 "/usr/lib/nss",
@@ -541,12 +558,8 @@ class MozillaInteraction:
         Returns all passwords in a list of dicts
         """
         outputs: PWStore = []
-        try: 
-            credentials: Credentials = self.obtain_credentials()
-        except:
-            print("\tNo password database found for this profile")
-            return outputs
-            
+        credentials: Credentials = self.obtain_credentials()
+
         LOG.info("Decrypting credentials")
         url: str
         user: str
@@ -588,7 +601,7 @@ class MozillaInteraction:
         return outputs
 
     def obtain_credentials(self) -> Credentials:
-        """Figure out which of the 2 possible backend credential engines is available"""
+        """Select a credentials backend supported by this teaching version."""
         credentials: Credentials
         try:
             credentials = JsonCredentials(self.profile)
@@ -596,6 +609,13 @@ class MozillaInteraction:
             try:
                 credentials = SqliteCredentials(self.profile)
             except NotFoundError:
+                if os.path.isfile(os.path.join(self.profile, "logins.db")):
+                    raise UnsupportedBackendError(
+                        "Ce profil utilise le nouveau stockage Firefox logins.db, "
+                        "que firefox_decrypt 1.1.3 ne sait pas déchiffrer. Dans "
+                        "about:config, passez signon.storage.rust.enabled à false, "
+                        "redémarrez Firefox, puis vérifiez que logins.json a été créé."
+                    )
                 raise Exit(Exit.MISSING_SECRETS)
 
         return credentials
@@ -625,6 +645,19 @@ def get_sections(profiles):
         else:
             continue
     return sections
+
+
+def get_profile_paths(profiles: ConfigParser, basepath: str) -> list[str]:
+    """Resolve relative and absolute profile entries from profiles.ini."""
+    paths = []
+    for section in profiles.sections():
+        if not section.startswith("Profile"):
+            continue
+        path = os.path.expanduser(profiles.get(section, "Path"))
+        if profiles.getboolean(section, "IsRelative", fallback=True):
+            path = os.path.join(basepath, path)
+        paths.append(os.path.normpath(path))
+    return paths
 
 
 def print_sections(sections, textIOWrapper=sys.stderr):
@@ -675,6 +708,32 @@ def read_profiles(basepath):
 
     return profiles
 
+
+def find_profile_roots() -> list[str]:
+    """Return existing Firefox profile roots for common installations."""
+    home = os.path.expanduser("~")
+    if SYSTEM == "Windows":
+        candidates = [os.path.join(os.environ["APPDATA"], "Mozilla", "Firefox")]
+    elif SYSTEM == "Darwin":
+        candidates = [os.path.join(home, "Library", "Application Support", "Firefox")]
+    else:
+        candidates = [
+            os.path.join(home, ".mozilla", "firefox"),
+            os.path.join(home, ".mozilla", "firefox-esr"),
+            os.path.join(home, ".config", "mozilla", "firefox"),
+            os.path.join(home, "snap", "firefox", "common", ".mozilla", "firefox"),
+            os.path.join(
+                home, ".var", "app", "org.mozilla.firefox", ".mozilla", "firefox"
+            ),
+        ]
+
+    return [
+        path
+        for path in dict.fromkeys(candidates)
+        if os.path.isfile(os.path.join(path, "profiles.ini"))
+    ]
+
+
 def setup_logging(verbose) -> None:
     """Setup the logging level and configure the basic logger"""
     if verbose == 1:
@@ -707,55 +766,76 @@ def identify_system_locale() -> str:
 
     return encoding
 
-encodings = (
-    ("stdin", sys.stdin.encoding),
-    ("stdout", sys.stdout.encoding),
-    ("stderr", sys.stderr.encoding),
-    ("locale", identify_system_locale()),
-)
-if SYSTEM == "Windows":
-    profile_path = os.path.join(os.environ["APPDATA"], "Mozilla", "Firefox")
-elif os.uname()[0] == "Darwin":
-    home = os.path.expanduser("~")
-    profile_path = home + "/Library/Application Support/Firefox"
-else:
-    home = os.path.expanduser("~")
-    profile_path = home + "/.mozilla/firefox"
-    if not os.path.isdir(profile_path):
-        profile_path = home + "/.mozilla/firefox-esr"
 
-setup_logging(0)
-moz = MozillaInteraction()
-basepath = os.path.expanduser(profile_path)
-profiles: ConfigParser = read_profiles(basepath)
-sections = list(get_sections(profiles))
-interactive = False 
-for section in sections: 
-    print(f"Profile {section}")
-    profile = os.path.join(basepath, section)
-    if not os.path.isdir(profile):
-        LOG.error(
-            "Profile location '%s' is not a directory. Has profiles.ini been tampered with?",
-            profile,
-        )
-        raise Exit(Exit.BAD_PROFILEINI)
-    
-    try:
-        # Start NSS for selected profile
-        moz.load_profile(profile)
-        # Check if profile is password protected and prompt for a password
-        moz.authenticate(interactive)
-        # Decode all passwords
-        outputs = moz.decrypt_passwords()
+def main() -> int:
+    setup_logging(0)
+    profile_roots = find_profile_roots()
+    if not profile_roots:
+        print("Aucun fichier profiles.ini de Firefox n'a été trouvé.", file=sys.stderr)
+        return Exit.MISSING_PROFILEINI
 
-        # Export passwords into one of many formats
-        formatter = HumanOutputFormat(outputs)
-        formatter.output()
+    failed = False
+    processed = False
+    for basepath in profile_roots:
+        profiles = read_profiles(basepath)
+        for profile in get_profile_paths(profiles, basepath):
+            print(f"Profile {profile}")
+            if not os.path.isdir(profile):
+                print("\tDossier de profil absent, profil ignoré.", file=sys.stderr)
+                failed = True
+                continue
 
-        # Finally shutdown NSS
-        moz.unload_profile()
-    except:
-        print(f"Invalid profile ({profile})")
-        continue
+            has_supported_store = any(
+                os.path.isfile(os.path.join(profile, filename))
+                for filename in ("logins.json", "signons.sqlite")
+            )
+            if not has_supported_store:
+                if os.path.isfile(os.path.join(profile, "logins.db")):
+                    print(
+                        "\tBackend logins.db détecté : passez "
+                        "signon.storage.rust.enabled à false dans about:config, "
+                        "puis redémarrez Firefox.",
+                        file=sys.stderr,
+                    )
+                    failed = True
+                else:
+                    print("\tAucune base de mots de passe trouvée, profil ignoré.")
+                print("")
+                continue
 
-    print("")
+            moz = MozillaInteraction()
+            loaded = False
+            try:
+                moz.load_profile(profile)
+                loaded = True
+                moz.authenticate(interactive=True)
+                outputs = moz.decrypt_passwords()
+                processed = True
+                HumanOutputFormat(outputs).output()
+            except UnsupportedBackendError as error:
+                print(f"\t{error}", file=sys.stderr)
+                failed = True
+            except Exit as error:
+                if error.exitcode == Exit.MISSING_SECRETS:
+                    print("\tAucune base de mots de passe trouvée, profil ignoré.")
+                else:
+                    print(
+                        f"\tErreur firefox_decrypt (code {error.exitcode}), profil ignoré.",
+                        file=sys.stderr,
+                    )
+                    failed = True
+            finally:
+                if loaded:
+                    try:
+                        moz.unload_profile()
+                    except Exit:
+                        failed = True
+            print("")
+
+    # An unsupported secondary profile is a warning if at least one compatible
+    # profile was successfully processed. This keeps shell payloads usable.
+    return Exit.CLEAN if processed else (Exit.ERROR if failed else Exit.CLEAN)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
